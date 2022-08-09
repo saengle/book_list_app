@@ -21,4 +21,7 @@ class UpdateBookViewModel {
       throw '저자를 입력해 주세요';
     }
   }
+  bool isEmpty(String imageUrl) {
+    return imageUrl.isEmpty ;
+  }
 }

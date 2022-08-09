@@ -4,16 +4,13 @@ import 'package:book_list_app/book_list_app/update_book_list/update_book_screen.
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
-import 'package:image_picker/image_picker.dart';
+
 
 class BookListScreen extends StatelessWidget {
   BookListScreen({Key? key}) : super(key: key);
 
   final viewModel = BookListViewModel();
-  final ImagePicker _picker = ImagePicker();
 
-  // byte array
-  Uint8List? _bytes;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +43,16 @@ class BookListScreen extends StatelessWidget {
                           builder: (context) => UpdateBookScreen(document)),
                     );
                   },
-                  leading: Image.network(
+                  leading: viewModel.isNotEmpty(data['imageUrl'])
+                    ? Image.network(
                     data['imageUrl'],
                     width: 100,
                     height: 100,
-                  ),
+                  )
+                      : const SizedBox(
+                    width: 100, height: 100,
+                    child: Text('빈 이미지'),
+                  )
                 );
               }).toList(),
             );

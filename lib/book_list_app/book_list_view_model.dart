@@ -5,4 +5,7 @@ class BookListViewModel {
 
   // db에 있는 모든 애들을 가져와서 stream으로 내보냄
   Stream<QuerySnapshot> get booksStream => _db.collection('books').snapshots();
+  bool isNotEmpty(String imageUrl) {
+    return imageUrl.isNotEmpty ;
+  }
 }
